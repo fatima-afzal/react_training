@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
+import ListItemText from '@material-ui/core/ListItemText';
 
-
-export class DisplayTodo extends Component{
-   constructor(props)
-   {
-       super(props);
-     
-   }
-
+export class DisplayTodoComplete extends Component{
+ 
     render()
     {       
        return(  
-        <div>
+        
+        <div className="Todo-left">
+        <h3>Complete Tasks</h3>
         <TodoList value={this.props.value}></TodoList>  
         <p>{this.props.value.length} items left</p>     
         </div>
+        
        );
     }
 }
@@ -37,5 +35,3 @@ function TodoList(props) {
       </ul>
     );
   }
-  
-  

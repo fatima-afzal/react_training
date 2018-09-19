@@ -1,10 +1,41 @@
 import React, { Component } from 'react';
-import { DisplayTodo } from './DisplayTodo';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import { DisplayTodoIncomplete } from './DisplayTodoIncomplete';
 import App from '../App';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 
+const styles = theme => ({
+    
+    button: {
+      margin: theme.spacing.unit,
+      variant : "outlined", 
+      color : "primary"
+      
+      
+    },
+    input: {
+      display: 'none',
+    },   
+        container: {
+          display: 'block',
+          flexWrap: 'wrap',
+          margin : 'auto'
+        },
+        formControl: {
+          margin: theme.spacing.unit,
+        },
+     
+  });
 
-export class InputTodo extends Component
+class InputTodo extends Component
 {
+    
     constructor(props)
     {
         super(props);
@@ -15,7 +46,7 @@ export class InputTodo extends Component
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
+    
     handleChange(e)
     {
          this.setState({ value : e.target.value});
@@ -28,12 +59,26 @@ export class InputTodo extends Component
 
     render()
     {
+        const { classes } = this.props;
         return(
-            <form onSubmit={this.handleSubmit}>
-                <input type = "text" value={this.state.value} onChange={this.handleChange}></input>
-                <input type = "submit" value = "Submit"></input>
-            </form>
+            <div className={classes.container} onSubmit={this.handleSubmit}>
+            <form>
+        <FormControl className={classes.formControl} >
+          <InputLabel htmlFor="name-simple">New Task</InputLabel>
+          <Input id="name-simple" value={this.state.name} onChange={this.handleChange} />    
+                <Button className={classes.button} type = "submit" >
+       Submit
+      </Button>
+      </FormControl>
+      </form>
+            </div>
         );
     }
 }
+
+InputTodo.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+  export default withStyles(styles)(InputTodo);
 

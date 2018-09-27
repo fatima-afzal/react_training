@@ -1,3 +1,4 @@
+
 import React from 'react'
  
  const InputTodo = ({addTodo}) =>
@@ -31,3 +32,4 @@ import React from 'react'
     )
 }
 export default (InputTodo);
+

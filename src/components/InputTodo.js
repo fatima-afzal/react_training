@@ -1,7 +1,7 @@
 
 import React from 'react'
- 
- const InputTodo = ({addTodo}) =>
+
+ const InputTodo = ({postTodo}) =>
 {
     let input
     return(
@@ -21,7 +21,7 @@ import React from 'react'
         if (!input.value.trim()) {
           return
         }
-        addTodo(input.value)
+        postTodo({text : input.value})
         input.value = ''
       }}>    
    <input ref={node => input = node}/>    

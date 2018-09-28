@@ -1,3 +1,5 @@
+
+
 const todos = (state = [],action) =>
 {
     switch(action.type)
@@ -5,14 +7,14 @@ const todos = (state = [],action) =>
         
         case 'ADD_TODO' :
         
-            return            [
+            return           [
                 ...state,
                 {
                   id: action.id,
                   text: action.text,
                   completed: false,
                 }
-              ]
+              ] 
         
 
         case 'CLICK_TODO' :
@@ -25,6 +27,11 @@ const todos = (state = [],action) =>
                     todo 
                 })
         
+        
+        case 'FETCH_TODOS_SUCCESS' :
+            return [...action.todos]
+
+            
         default :
         return state 
     }

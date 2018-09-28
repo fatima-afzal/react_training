@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { Component } from 'react'
 import VisibleTodo from '../containers/VisibleTodo';
 import AddTodo from '../containers/AddTodo'
+import { fetchTodos } from '../actions';
+import { connect } from "react-redux";
 
-const App = () => (
-  <div>
+class App extends Component
+{
+ 
+  componentDidMount()
+  {
+    this.props.dispatch(fetchTodos())
+  }
+
+  render()
+  {
+  
+   return  <div>    
     <AddTodo /> 
     <br></br>
     <VisibleTodo></VisibleTodo>
   </div>
-)
+  
+}
+}
 
-export default App
+export default connect() (App)

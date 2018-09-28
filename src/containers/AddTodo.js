@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
 import InputTodo from '../components/InputTodo'
-import {addTodo} from '../actions'
-
+import { postData} from '../actions'
 
   const mapDispatchToProps = dispatch => ({
-      addTodo: input => dispatch(addTodo(input))
+      postTodo: input => postData(input)
     })
     
   export default connect(

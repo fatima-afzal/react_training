@@ -21,7 +21,7 @@ import React from 'react'
         if (!input.value.trim()) {
           return
         }
-        postTodo({text : input.value})
+        postTodo({text : input.value, completed : false})
         input.value = ''
       }}>    
    <input ref={node => input = node}/>    

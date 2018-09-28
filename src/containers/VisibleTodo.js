@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {TodoList} from '../components/TodoList'
-import {clickTodo} from '../actions'
-
+import {updateData} from '../actions'
+import {updateTodoSuccess} from '../actions/index'
 
 const getIncompleteTodos = (todos) =>
 {
@@ -19,7 +19,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    clickTodo: id => dispatch(clickTodo(id))
+    updateTodo : (id,{text,completed}) => updateData(id,{text,completed}).then(json => dispatch(updateTodoSuccess(json))),
+
   })
   
 export default connect(

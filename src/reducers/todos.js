@@ -5,26 +5,26 @@ const todos = (state = [],action) =>
     switch(action.type)
     {
         
-        case 'ADD_TODO' :
+        case 'ADD_TODO_SUCCESS' :
         
             return           [
                 ...state,
                 {
-                  id: action.id,
-                  text: action.text,
+                  id: action.todo.id,
+                  text: action.todo.text,
                   completed: false,
                 }
               ] 
         
 
-        case 'CLICK_TODO' :
+        case 'UPDATE_TODO_SUCCESS' :
         
-            return state.map(todo => 
+            return state.map(todos => 
                 {
-                    return (todo.id === action.id) ?
-                    ({...todo, completed: !todo.completed})
+                    return (todos.id === action.todo.id) ? 
+                    ({...todos, completed: !todos.completed})
                     :
-                    todo 
+                    todos 
                 })
         
         

@@ -1,20 +1,17 @@
 import fetch from 'cross-fetch'
 
-let nextTodoId = 0
-
-export const addTodo = (text) =>
+export const addTodoSuccess = (todo) =>
 (
 {
-    type : 'ADD_TODO',
-    id : nextTodoId++,
-    text
+    type : 'ADD_TODO_SUCCESS',
+    todo
 }
 )
-export const clickTodo = (id) =>
+export const updateTodoSuccess = (todo) =>
 (
 {
-    type : 'CLICK_TODO',
-    id
+    type : 'UPDATE_TODO_SUCCESS',
+    todo
 }
 )
 
@@ -29,7 +26,6 @@ export const fetchTodos = () => {
         .then(handleErrors)
         .then(res => res.json())
         .then(json => {
-        debugger
           dispatch(fetchTodosSuccess(json))     
         })
     }
@@ -37,19 +33,37 @@ export const fetchTodos = () => {
   
 export function postData( data = {}) {
     return fetch(`http://localhost:3000/todos`, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, cors, *same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, same-origin, *omit
+        method: "POST", 
+        mode: "cors", 
+        cache: "no-cache", 
+        credentials: "same-origin",
         headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json; charset=utf-8",   
         },
-        redirect: "follow", // manual, *follow, error
-        referrer: "no-referrer", // no-referrer, *client
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
+        redirect: "follow", 
+        referrer: "no-referrer", 
+        body: JSON.stringify(data), 
     })
-    .then(response => response.json()) // parses response to JSON
+    .then(response => response.json()) 
+    
+}
+
+export function updateData(id, data ={}) {
+  
+  return fetch(`http://localhost:3000/todos/${id}`, {
+      method: "PUT", 
+      mode: "cors", 
+      cache: "no-cache", 
+      credentials: "same-origin",
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",   
+      },
+      redirect: "follow", 
+      referrer: "no-referrer", 
+      body: JSON.stringify(data), 
+  })
+  .then(response => response.json()) 
+  
 }
 
   function handleErrors(response) {
